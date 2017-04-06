@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'expert_search'
+    'expert_search.apps.ExpertSearchConfig'
 ]
 
 MIDDLEWARE = [
