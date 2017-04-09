@@ -1,6 +1,8 @@
 from django.contrib.auth.models import User
 from django.test import TestCase
 
+from .models import Expert
+
 # Create your tests here.
 class URLTest(TestCase):
     urls = ['/', '/?q=test+search']
@@ -45,3 +47,23 @@ class ContributorTest(TestCase):
         
         r = self.client.get('/contribute/password_change_done/')
         self.assertEqual(r.status_code, 200)
+    
+    def test_contributor_add_expert(self):
+        self.assertTrue(self.client.login(username='mitch',
+            password='superexample'))
+        
+        r = self.client.get('/contribute/')
+        self.assertEqual(r.status_code, 200)
+        
+        data = {
+            'title': 'Ms.',
+            'first_name': 'New',
+            'last_name': 'Expert',
+            'affiliation': 'UBC',
+            'subjects': 'Nuisance Wildlife Management',
+            'email': 'newexpert@example.com',
+            'website': 'example.com/new_expert/',
+            'description': 'a new expert.'
+        }
+        r = self.client.post('/contribute/', data=data)
+        self.assertEqual(r.status_code, 302)
