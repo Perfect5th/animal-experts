@@ -1,0 +1,8 @@
+{% extends "expert_search/base.html" %}
+
+{% block content %}
+  <form class="contrib-login-form" action="." method="post">{% csrf_token %}
+    {{ form }}
+    <input type="submit" name="Log In" value="Log In">
+  </form>
+{% endblock %}

@@ -1,0 +1,20 @@
+[
+    {
+        "model": "auth.user",
+        "pk": 1,
+        "fields": {
+            "password": "pbkdf2_sha256$36000$4xOeJRKFTRdU$72WLSbgrRfwTkfNph3HcpMJByhLhguO197NCl3eYLoM=",
+            "last_login": "2017-04-08T23:47:51.449Z",
+            "is_superuser": true,
+            "username": "mitch",
+            "first_name": "",
+            "last_name": "",
+            "email": "mitch.b45@gmail.com",
+            "is_staff": true,
+            "is_active": true,
+            "date_joined": "2017-04-06T03:45:50.931Z",
+            "groups": [],
+            "user_permissions": []
+        }
+    }
+]
