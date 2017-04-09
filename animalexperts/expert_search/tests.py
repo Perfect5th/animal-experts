@@ -61,9 +61,11 @@ class ContributorTest(TestCase):
             'last_name': 'Expert',
             'affiliation': 'UBC',
             'subjects': 'Nuisance Wildlife Management',
+            'fields': 1,
             'email': 'newexpert@example.com',
-            'website': 'example.com/new_expert/',
+            'website': 'http://example.com/new_expert/',
             'description': 'a new expert.'
         }
         r = self.client.post('/contribute/', data=data)
         self.assertEqual(r.status_code, 302)
+        self.assertTrue(Expert.objects.filter(pk=1))

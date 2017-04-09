@@ -1,7 +1,10 @@
-from django.conf.urls import url
+from django.conf.urls import url, include
 from django.contrib.auth import views as auth_views
 from django.urls import reverse_lazy
 
+from rest_framework.urlpatterns import format_suffix_patterns
+
+from .api import views as api_views
 from .views import *
 
 urlpatterns = [
@@ -24,4 +27,23 @@ urlpatterns = [
             auth_views.PasswordChangeDoneView.as_view(
                 template_name='contributors/password_change_done.html'), 
             name='contribute_password_change_done'),
+]
+
+api_urlpatterns = [
+    # REST API views.
+    url(r'^api/$', api_views.api_root, name='api-root'),
+    url(r'^api/experts/$', api_views.ExpertList.as_view(), name='expert-list'),
+    url(r'^api/experts/(?P<pk>[0-9]+)/$', api_views.ExpertDetail.as_view(),
+        name='expert-detail'),
+    url(r'^api/fields/$', api_views.FieldCategoryList.as_view(),
+        name='fieldcategory-list'),
+    url(r'^api/fields/(?P<code>[A-Za-z0-9_-]+)/$',
+        api_views.FieldCategoryDetail.as_view(), name='fieldcategory-detail'),
+]
+
+api_urlpatterns = format_suffix_patterns(api_urlpatterns)
+urlpatterns = urlpatterns + api_urlpatterns
+urlpatterns += [
+    # REST API auth urls.
+    url(r'^api-auth/', include('rest_framework.urls'))
 ]

@@ -16,5 +16,27 @@
             "groups": [],
             "user_permissions": []
         }
+    },
+    {
+        "model": "expert_search.fieldcategory",
+        "pk": 1,
+        "fields": {
+            "name": "Animal Welfare",
+            "code": "animal_welfare"
+        }
+    },
+    {
+        "model": "expert_search.expert",
+        "pk": 1,
+        "fields": {
+            "title": "Ms.",
+            "first_name": "New",
+            "last_name": "Expert",
+            "affiliation": "UBC",
+            "subjects": "Nuisance Wildlife Management",
+            "email": "newexpert@example.com",
+            "website": "http://example.com/new_expert/",
+            "description": "a new expert."
+        }
     }
 ]
