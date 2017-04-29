@@ -1,3 +1,6 @@
+{% load render_bundle from webpack_loader %}
+{% load staticfiles %}
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -6,6 +9,8 @@
     <meta name="description" content="A Web Application for finding experts animal-welfare-related fields">
     <title>Animal Experts</title>
     
+    <link rel="stylesheet" href="{% static 'expert_search/main.css' %}">
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet"> 
     {% block extra_head %}{% endblock %}
   </head>
   <body>
@@ -28,5 +33,7 @@
     <footer>
       {% include "expert_search/footer.html" %}
     </footer>
+    
+    {% render_bundle 'main' %}
   </body>
 </html>

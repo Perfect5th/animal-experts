@@ -1,9 +1,16 @@
-<ul>
-  <li><a href="{% url 'search' %}">Find an Expert</a></li>
-  {% if not user.is_authenticated %}
-    <li><a href="{% url 'contribute_login' %}">Log In</a></li>
-  {% else %}
-    <li><a href="{% url 'contribute_home' %}">Contribute</a></li>
-    <li><a href="{% url 'contribute_logout' %}">Log Out</a></li>
-  {% endif %}
-</ul>
+<div class="nav-main">
+  <a class="nav-home" href="{% url 'search' %}">LOGO</a>
+  <div class="nav-lists">
+    <ul class="nav-site nav-left">
+      <li><a href="{% url 'search' %}">Find an Expert</a></li>
+    </ul>
+    <ul class="nav-site nav-right">
+      {% if not user.is_authenticated %}
+        <li><a href="{% url 'contribute_login' %}">Log In</a></li>
+      {% else %}
+        <li><a href="{% url 'contribute_home' %}">Contribute</a></li>
+        <li><a href="{% url 'contribute_logout' %}">Log Out</a></li>
+      {% endif %}
+    </ul>
+  </div>
+</div>

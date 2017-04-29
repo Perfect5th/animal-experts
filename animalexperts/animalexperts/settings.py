@@ -38,7 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'expert_search.apps.ExpertSearchConfig',
-    'rest_framework'
+    'rest_framework',
+    'webpack_loader'
 ]
 
 MIDDLEWARE = [
@@ -122,6 +123,10 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'assets')
+]
+
 REST_FRAMEWORK = {
     """
     Use django's standard `django.contrib.auth` permissions,
@@ -131,4 +136,11 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
     ],
     'PAGE_SIZE': 10
+}
+
+WEBPACK_LOADER = {
+    'DEFAULT': {
+        'BUNDLE_DIR_NAME': 'bundles/',
+        'STATS_FILE': os.path.join(BASE_DIR, 'webpack-stats.json')
+    }
 }

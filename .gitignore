@@ -20,6 +20,7 @@ lib64/
 parts/
 sdist/
 var/
+node_modules/
 *.egg-info/
 .installed.cfg
 *.egg
@@ -88,3 +89,7 @@ ENV/
 
 # Rope project settings
 .ropeproject
+
+# miscellaneous
+webpack-stats.json
+animalexperts/assets/bundles/
