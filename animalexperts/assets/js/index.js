@@ -5,10 +5,18 @@ var Search = React.createClass ({
   render: function() {
     return (
       <div>
-        <h1>
-          Find me someone who is an expert in
-        </h1>
-        <input type="text" />
+        <div className="search-prompt-text">
+          <p>
+            Find me someone who is an expert in
+          </p>
+        </div>
+        <div className="search-box">
+          <div className="search-wrap">
+            <div className="search-padding">
+              <input type="text" className="expert-search" />
+            </div>
+          </div>
+        </div>
       </div>
     )
   }
