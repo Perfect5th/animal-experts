@@ -8,10 +8,10 @@ from .forms import ExpertForm
 
 # Create your views here.
 class ExpertSearch(TemplateView):
-    
+
     def get_template_names(self):
         """
-        if this is a search request, return the search results template, else 
+        if this is a search request, return the search results template, else
         return the homepage template.
         """
         if self.request.GET.get('q'):
@@ -20,16 +20,22 @@ class ExpertSearch(TemplateView):
             return ['expert_search/search_home.html']
 
 
-class ContributeHome(LoginRequiredMixin, FormView):
+class ContributeAddExpert(LoginRequiredMixin, FormView):
     """
-    Simple FormView for contributing experts. Requires authentication.
+    Dashboard view for contributors.
     """
-    template_name = 'contributors/home.html'
+    template_name = 'contributors/add_expert.html'
     form_class = ExpertForm
     success_url = reverse_lazy('contribute_home')
     login_url = reverse_lazy('contribute_login')
 
 
+class ContributeHome(LoginRequiredMixin, TemplateView):
+    """
+    Simple FormView for contributing experts. Requires authentication.
+    """
+    template_name = 'contributors/home.html'
+
 def contribute_logout(request):
-    return logout_then_login(request, 
+    return logout_then_login(request,
         login_url=reverse_lazy('contribute_login'))

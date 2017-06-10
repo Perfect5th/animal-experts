@@ -1,9 +1,16 @@
 {% extends 'expert_search/base.html' %}
 
 {% block content %}
-  {{ form.errors }}
-  <form class="add-expert-form" action="." method="post">{% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" name="Add Expert" value="Add Expert">
-  </form>
+  <section class="column-main">
+    <h1>Welcome back, {{ request.user.first_name }}!</h1>
+  </section>
+{% endblock %}
+
+{% block sidebar %}
+  <nav class="column-nav">
+    <ul>
+      <li class="nav-header">Experts</li>
+      <li><a href="#">Add an Expert</a></li>
+    </ul>
+  </nav>
 {% endblock %}
