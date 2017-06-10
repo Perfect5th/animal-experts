@@ -1,8 +1,28 @@
 {% extends "expert_search/base.html" %}
 
 {% block content %}
-  <form class="contrib-login-form" action="." method="post">{% csrf_token %}
-    {{ form }}
-    <input type="submit" name="Log In" value="Log In">
-  </form>
+  <section class="content content-narrow">
+    <div class="form-errors">
+        {{ form.non_field_errors }}
+    </div>
+    <h1 class="content-title">Log In and Contribute</h1>
+
+    <div class="column column-single">
+      <form class="contrib-login-form" action="." method="post">{% csrf_token %}
+        <div class="form-group">
+          {{ form.username.errors }}
+          <label for="{{ form.username.id_for_label }}">{{ form.username.label }}</label>
+          {{ form.username }}
+        </div>
+        <div class="form-group">
+          {{ form.password.errors }}
+          <label for="{{ form.password.id_for_label }}">{{ form.password.label }}</label>
+          {{ form.password }}
+        </div>
+        <div class="form-group">
+          <button class="btn btn-submit" type="submit" name="Log In" value="Log In">Log In</button>
+        </div>
+      </form>
+    </div>
+  </section>
 {% endblock %}

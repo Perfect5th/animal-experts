@@ -5,7 +5,12 @@
     padding: 1em;
 }
 
+.content-narrow {
+    max-width: 650px;
+}
+
 .column {
+    border: 1px solid #5b75e5;
     padding: 1em;
 }
 
@@ -14,14 +19,17 @@
     padding-left: 1em;
 }
 
+.column-single form {
+    margin: 1em auto;
+    width: 50%;
+}
+
 .column-main {
-    border: 1px solid #5b75e5;
     float: right;
     width: 70%;
 }
 
 .column-nav {
-    border: 1px solid #5b75e5;
     margin-right: 3%;
     float: right;
     width: 20%;
@@ -29,6 +37,43 @@
 
 .column-nav ul {
     list-style: none;
+}
+
+/* Buttons */
+.btn {
+    background-color: #5b75e5;
+    border: 1px solid gray;
+    border-radius: 0.5em;
+    color: #fff;
+    cursor: pointer;
+    padding: 0.5em;
+}
+
+.btn:active {
+    background-color: #31428d;
+}
+
+/* Base Forms */
+.form-group {
+    display: block;
+    margin-bottom: 1em;
+    text-align: right;
+}
+
+.form-group label {
+    margin-right: 0.5em;
+    width: 30%;
+}
+
+.form-group input {
+    height: 2em;
+    width: 65%;
+    padding: 0 0.5em;
+}
+
+/* Login Form */
+.column-single input {
+    border: 1px solid gray;
 }
 
 /* Search Layout */
