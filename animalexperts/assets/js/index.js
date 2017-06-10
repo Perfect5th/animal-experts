@@ -5,8 +5,8 @@ class Search extends React.Component {
   render() {
     return (
       <div>
-        <div className="search-prompt">
-          <div className="search-prompt-text">
+        <div className="prompt search-prompt">
+          <div className="prompt-text search-prompt-text">
             <p>
               Find me someone who is an expert in
             </p>
@@ -20,8 +20,8 @@ class Search extends React.Component {
           </div>
         </div>
         <div className="results-box"></div>
-        <div className="select-prompt">
-          <div className="search-prompt-text">
+        <div className="prompt select-prompt">
+          <div className="prompt-text search-prompt-text">
             <p>
               Show me experts in the field of
             </p>

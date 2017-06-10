@@ -93,3 +93,4 @@ ENV/
 # miscellaneous
 webpack-stats.json
 animalexperts/assets/bundles/
+run_lan_server

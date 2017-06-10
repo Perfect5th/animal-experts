@@ -7,33 +7,35 @@
     <meta charset="utf-8">
     <meta name="author" content="Mitchell Burton">
     <meta name="description" content="A Web Application for finding experts animal-welfare-related fields">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <title>Animal Experts</title>
-    
+
     <link rel="stylesheet" href="{% static 'expert_search/main.css' %}">
-    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
     {% block extra_head %}{% endblock %}
   </head>
   <body>
-    
+
     <header>
       {% include "expert_search/header.html" %}
     </header>
-    
+
     <nav>
       {% include "expert_search/nav.html" %}
     </nav>
-    
+
     <main>
       {% block content %}{% endblock %}
       <aside>
         {% block sidebar %}{% endblock %}
       </aside>
     </main>
-    
+
     <footer>
       {% include "expert_search/footer.html" %}
     </footer>
-    
+
     {% render_bundle 'main' %}
   </body>
 </html>
