@@ -29,6 +29,11 @@
     width: 70%;
 }
 
+.column-main form {
+    margin: 1em;
+    width: 80%;
+}
+
 .column-nav {
     margin-right: 3%;
     float: right;
@@ -65,15 +70,21 @@
     width: 30%;
 }
 
-.form-group input {
-    height: 2em;
+.form-group input,
+.form-group textarea,
+.form-group select[multiple] {
+    border: 1px solid gray;
     width: 65%;
-    padding: 0 0.5em;
+    margin: 0 0.5em;
 }
 
-/* Login Form */
-.column-single input {
-    border: 1px solid gray;
+.form-group input {
+    height: 2em;
+}
+
+.form-group-multiline {
+    display: flex;
+    justify-content: flex-end;
 }
 
 /* Search Layout */
