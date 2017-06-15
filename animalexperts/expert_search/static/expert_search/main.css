@@ -74,12 +74,13 @@
 .form-group textarea,
 .form-group select[multiple] {
     border: 1px solid gray;
-    width: 65%;
+    width: 60%;
     margin: 0 0.5em;
 }
 
 .form-group input {
     height: 2em;
+    padding: 0 0.5em;
 }
 
 .form-group-multiline {
