@@ -58,6 +58,28 @@
     background-color: #31428d;
 }
 
+/* Search Results */
+.results-list ul {
+    list-style: none;
+}
+
+.results-list li {
+    margin-bottom: 2em;
+    display: flex;
+    justify-content: space-between;
+}
+
+.results-list li:last-child {
+    margin: 0;
+}
+
+.expert-subjects,
+.expert-fields,
+.expert-website,
+.expert-description {
+    align-self: center;
+}
+
 /* Base Forms */
 .form-group {
     display: block;

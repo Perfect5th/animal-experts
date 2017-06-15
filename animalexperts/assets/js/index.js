@@ -63,14 +63,13 @@ class SelectBox extends React.Component {
 
 class SearchResults extends React.Component {
   loadSearchResults() {
-    $.ajax({
-      url: '/api/experts/',
-      datatype: 'json',
-      cache: false,
-      success: function(data) {
-        this.setState({ data: data });
-      }.bind(this)
-    })
+    var r = new XMLHttpRequest();
+    r.open("GET", "/api/experts", true);
+    r.onreadystatechange = () => {
+      if (r.readyState != 4 || r.status != 200) return;
+      this.setState({ data: JSON.parse(r.responseText) });
+    };
+    r.send();
   }
 
   constructor(props) {
@@ -85,7 +84,26 @@ class SearchResults extends React.Component {
   render() {
     if (this.state.data.results) {
       var expertNodes = this.state.data.results.map(function (expert) {
-        return <li key={expert.url}>{expert.title} {expert.first_name} {expert.last_name}</li>;
+        return (
+          <li key={expert.url}>
+            <div className="expert-left-block">
+              <h3>{expert.title} {expert.first_name} {expert.last_name}</h3>
+              <p className="expert-affiliation">{expert.affiliation}</p>
+            </div>
+            <div className="expert-subjects">
+              {expert.subjects}
+            </div>
+            <div className="expert-fields">
+              {expert.fields}
+            </div>
+            <div className="expert-website">
+              {expert.website}
+            </div>
+            <div className="expert-description">
+              {expert.description}
+            </div>
+          </li>
+        );
       })
     }
 
