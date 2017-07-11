@@ -26,3 +26,6 @@ class Expert(models.Model):
     email = models.EmailField()
     website = models.URLField()
     description = models.TextField()
+
+    def full_name(self):
+        return '{} {} {}'.format(self.title, self.first_name, self.last_name)

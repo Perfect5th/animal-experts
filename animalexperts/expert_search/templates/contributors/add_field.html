@@ -2,23 +2,20 @@
 
 {% block content %}
   <section class="content">
-    <h1 class="content-title">Add an Expert</h1>
+    <h1 class="content-title">Add a Field</h1>
 
     <div class="column column-main">
       {{ form.non_field_errors }}
       <form class="add-expert-form" action="." method="post">{% csrf_token %}
         {% for field in form %}
-          <div class="form-group{% if field.name == 'fields' or field.name == 'subjects' %} form-group-multiline{% endif %}">
+          <div class="form-group">
             {{ field.errors }}
             <label for="{{ field.id_for_label }}">{{ field.label }}{% if field.field.required %}*{% endif %}</label>
             {{ field }}
           </div>
-          {% if field.name == 'fields' %}
-            <p class="help-text">Control or Command-click to select multiple</p>
-          {% endif %}
         {% endfor %}
         <div class="form-group">
-          <button class="btn" type="submit" name="Add Expert" value="Add Expert">Add Expert</button>
+          <button class="btn" type="submit" name="Add Field" value="Add Field">Add Field</button>
           <button class="btn btn-cancel" type="reset">Cancel</button>
         </div>
       </form>
@@ -28,8 +25,8 @@
       <nav class="column column-nav">
         <ul>
           <li class="nav-title"><a href="{% url 'contribute_home' %}">Experts</a></li>
-          <li><a href="#">Add an Expert</a></li>
-          <li><a href="{% url 'contribute_add_field' %}">Add a Field</a></li>
+          <li><a href="{% url 'contribute_add_expert' %}">Add an Expert</a></li>
+          <li><a href="#">Add a Field</a></li>
         </ul>
       </nav>
     </aside>

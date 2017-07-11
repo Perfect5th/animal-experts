@@ -1,0 +1,45 @@
+{% extends 'expert_search/base.html' %}
+
+{% block content %}
+  <section class="content">
+    <h1 class="content-title">{{ expert.full_name }}</h1>
+
+    <div class="column column-main">
+      <h3>{{ expert.full_name }} <a href="{% url 'contribute_expert_update' expert.pk %}" class="edit-link"><small>edit</small></a></h3>
+      <table class="expert-table">
+        <tbody>
+          <tr>
+            <td>Affiliation</td>
+            <td>{{ expert.affiliation }}</td>
+          </tr>
+          <tr>
+            <td>Website</td>
+            <td>{{ expert.website }}</td>
+          </tr>
+          <tr>
+            <td>Subjects:</td>
+            <td>{{ expert.subjects }}</td>
+          </tr>
+          <tr>
+            <td>Fields:</td>
+            <td>{{ expert.fields }}</td>
+          </tr>
+          <tr>
+            <td>Description:</td>
+            <td>{{ expert.description }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <aside>
+      <nav class="column column-nav">
+        <ul>
+          <li class="nav-title"><a href="{% url 'contribute_home' %}">Experts</a></li>
+          <li><a href="{% url 'contribute_add_expert' %}">Add an Expert</a></li>
+          <li><a href="#">Add a Field</a></li>
+        </ul>
+      </nav>
+    </aside>
+  </section>
+{% endblock %}

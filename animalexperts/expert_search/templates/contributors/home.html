@@ -8,11 +8,40 @@
     <h1>Welcome, {{ user.username|title }}!</h1>
   </div>
 
+  <div class="column column-main">
+    <table class="expert-table">
+      <thead>
+        <th>Expert</th>
+        <th>Affiliation</th>
+        <th>subjects</th>
+        <th>fields</th>
+      </thead>
+
+      <tbody>
+        {% for expert in expert_list %}
+          <tr>
+            <td><a href="{% url 'contribute_expert_detail' expert.id %}">{{ expert.full_name }}</a></td>
+            <td>{{ expert.affiliation }}</td>
+            <td>{{ expert.subjects }}</td>
+            <td>
+              <ul>
+                {% for field in expert.fields.all %}
+                  <li>{{ field }}</li>
+                {% endfor %}
+              </ul>
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
   <aside>
     <nav class="column column-nav">
       <ul>
         <li class="nav-title">Experts</li>
         <li><a href="{% url 'contribute_add_expert' %}">Add an Expert</a></li>
+        <li><a href="{% url 'contribute_add_field' %}">Add a Field</a></li>
       </ul>
     </nav>
   </aside>
