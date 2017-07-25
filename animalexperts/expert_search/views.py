@@ -46,7 +46,7 @@ class ContributeExpertDetail(LoginRequiredMixin, TemplateView):
 
     def get_context_data(self, **kwargs):
         try:
-            expert = Expert.objects.get(pk=self.kwargs['expert_pk'])
+            expert = Expert.objects.get(pk=self.kwargs['pk'])
             return { 'expert': expert }
         except Expert.DoesNotExist:
             raise Http404
@@ -56,7 +56,7 @@ class ContributeAddExpert(LoginRequiredMixin, FormView):
     """
     View for adding an individual Expert.
     """
-    template_name = 'contributors/add_expert.html'
+    template_name = 'contributors/expert_form.html'
     form_class = ExpertForm
     success_url = reverse_lazy('contribute_home')
     login_url = reverse_lazy('contribute_login')
@@ -67,7 +67,18 @@ class ContributeAddExpert(LoginRequiredMixin, FormView):
 
 
 class ContributeExpertUpdate(LoginRequiredMixin, UpdateView):
+    """
+    View for updating an existing Expert.
+    """
+    model = Expert
+    fields = ('title', 'first_name', 'last_name', 'affiliation', 'subjects',
+        'fields', 'website', 'description')
+    template_name = 'contributors/expert_form.html'
+
+
+class ContributeExpertDelete(LoginRequiredMixin, TemplateView):
     pass
+    # TODO: Finish implementation of delete view
 
 
 class ContributeAddField(LoginRequiredMixin, FormView):

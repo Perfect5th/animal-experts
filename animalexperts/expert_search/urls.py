@@ -12,8 +12,9 @@ urlpatterns = [
     url(r'^contribute/$', ContributeHome.as_view(), name='contribute_home'),
     url(r'^contribute/add_expert/$', ContributeAddExpert.as_view(), name='contribute_add_expert'),
     url(r'^contribute/add_field/$', ContributeAddField.as_view(), name='contribute_add_field'),
-    url(r'^contribute/expert/(?P<expert_pk>[0-9]+)/$', ContributeExpertDetail.as_view(), name='contribute_expert_detail'),
-    url(r'^contribute/expert/(?P<expert_pk>[0-9]+)/update/$', ContributeExpertUpdate.as_view(), name='contribute_expert_update'),
+    url(r'^contribute/expert/(?P<pk>[0-9]+)/$', ContributeExpertDetail.as_view(), name='contribute_expert_detail'),
+    url(r'^contribute/expert/(?P<pk>[0-9]+)/update/$', ContributeExpertUpdate.as_view(), name='contribute_expert_update'),
+    url(r'^contribute/expert/(?P<pk>[0-9]+)/delete/$', ContributeExpertDelete.as_view(), name='contribute_expert_delete'),
 
     # Authentication views for contributors.
     url(r'^contribute/login/$',

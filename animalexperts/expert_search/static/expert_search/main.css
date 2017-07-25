@@ -150,6 +150,16 @@
     font-size: 0.8em;
 }
 
+/* Expert Form Layout */
+.button-form-group {
+    padding-left: 37%;
+}
+
+.btn-delete {
+    background-color: #e55b5b;
+    float: left;
+}
+
 /* Search Layout */
 .search-prompt, .select-prompt {
     align-items: center;

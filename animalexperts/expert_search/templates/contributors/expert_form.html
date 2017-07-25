@@ -17,8 +17,19 @@
             <p class="help-text">Control or Command-click to select multiple</p>
           {% endif %}
         {% endfor %}
-        <div class="form-group">
-          <button class="btn" type="submit" name="Add Expert" value="Add Expert">Add Expert</button>
+        <div class="form-group button-form-group">
+          {% if object %}
+            <a href="{% url 'contribute_expert_delete' object.pk %}">
+              <button type="button" class="btn btn-delete">Delete Expert</button>
+            </a>
+          {% endif %}
+          <button class="btn" type="submit" name="Add Expert" value="Add Expert">
+            {% if object %}
+              Update Expert
+            {% else %}
+              Add Expert
+            {% endif %}
+          </button>
           <button class="btn btn-cancel" type="reset">Cancel</button>
         </div>
       </form>
@@ -28,7 +39,7 @@
       <nav class="column column-nav">
         <ul>
           <li class="nav-title"><a href="{% url 'contribute_home' %}">Experts</a></li>
-          <li><a href="#">Add an Expert</a></li>
+          <li><a href="{% url 'contribute_add_expert' %}">Add an Expert</a></li>
           <li><a href="{% url 'contribute_add_field' %}">Add a Field</a></li>
         </ul>
       </nav>
