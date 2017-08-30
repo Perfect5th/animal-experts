@@ -26,6 +26,14 @@
         }
     },
     {
+        "model": "expert_search.fieldcategory",
+        "pk": 2,
+        "fields": {
+            "name": "Exotics",
+            "code": "exotic_pets"
+        }
+    },
+    {
         "model": "expert_search.expert",
         "pk": 1,
         "fields": {
@@ -36,7 +44,23 @@
             "subjects": "Nuisance Wildlife Management",
             "email": "newexpert@example.com",
             "website": "http://example.com/new_expert/",
-            "description": "a new expert."
+            "description": "a new expert.",
+            "fields": [1]
+        }
+    },
+    {
+        "model": "expert_search.expert",
+        "pk": 2,
+        "fields": {
+            "title": "Mr.",
+            "first_name": "Second",
+            "last_name": "Expert",
+            "affiliation": "SFU",
+            "subjects": "Exotic Pets",
+            "email": "secondexpert@example.com",
+            "website": "http://example.com/second_expert/",
+            "description": "a second expert.",
+            "fields": [2]
         }
     }
 ]

@@ -14,3 +14,5 @@ DATABASES = {
         'PORT': ''
     }
 }
+
+INSTALLED_APPS += ['django.contrib.postgres']

@@ -1,3 +1,4 @@
+from django.contrib.postgres.search import SearchQuery, SearchRank, SearchVector
 from django.http import Http404
 
 from rest_framework import generics
@@ -12,9 +13,18 @@ from .serializers import ExpertSerializer, FieldCategorySerializer
 
 
 class ExpertList(generics.ListCreateAPIView):
-    queryset = Expert.objects.all()
     serializer_class = ExpertSerializer
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+
+    def get_queryset(self):
+        queryset = Expert.objects.all()
+        search_term = self.request.query_params.get('q')
+        if search_term:
+            vector = SearchVector('subjects') + SearchVector('fields__name')
+            query = SearchQuery(search_term)
+            queryset = queryset.annotate(
+                rank=SearchRank(vector, query)).order_by('-rank')
+        return queryset
 
 
 class ExpertDetail(generics.RetrieveUpdateDestroyAPIView):

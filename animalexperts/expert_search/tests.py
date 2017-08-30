@@ -3,6 +3,8 @@ from django.test import TestCase
 
 from .models import Expert
 
+from .api.tests import *
+
 # Create your tests here.
 class URLTest(TestCase):
     urls = ['/', '/?q=test+search']
