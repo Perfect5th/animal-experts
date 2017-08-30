@@ -16,3 +16,5 @@ DATABASES = {
 }
 
 INSTALLED_APPS += ['django.contrib.postgres']
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
