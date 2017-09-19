@@ -2,7 +2,11 @@
 Production settings file
 '''
 
+import os
+
 from .base_settings import *
+
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', SECRET_KEY)
 
 DATABASES = {
     'default': {
