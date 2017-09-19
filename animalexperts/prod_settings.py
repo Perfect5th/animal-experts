@@ -4,6 +4,8 @@ Production settings file
 
 from .base_settings import *
 
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
