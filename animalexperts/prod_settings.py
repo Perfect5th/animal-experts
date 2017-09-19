@@ -2,7 +2,7 @@
 Production settings file
 '''
 
-from .base import *
+from .base_settings import *
 
 DATABASES = {
     'default': {
