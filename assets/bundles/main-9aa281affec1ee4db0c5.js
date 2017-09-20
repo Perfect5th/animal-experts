@@ -9888,7 +9888,7 @@ class SearchResults extends React.Component {
             { key: field.url },
             React.createElement(
               'a',
-              { href: '{field.url}' },
+              { href: field.url },
               field.name
             )
           );
@@ -9932,7 +9932,11 @@ class SearchResults extends React.Component {
           React.createElement(
             'div',
             { className: 'expert-website' },
-            expert.website
+            React.createElement(
+              'a',
+              { href: expert.website },
+              expert.website
+            )
           ),
           React.createElement(
             'div',

@@ -87,7 +87,7 @@ class SearchResults extends React.Component {
       var expertNodes = this.state.data.results.map(expert => {
 
         var fieldItems = expert.fields.map(field => {
-          return <li key={field.url}><a href="{field.url}">{field.name}</a></li>;
+          return <li key={field.url}><a href={field.url}>{field.name}</a></li>;
         });
 
         return (
@@ -103,7 +103,7 @@ class SearchResults extends React.Component {
               <ul>{fieldItems}</ul>
             </div>
             <div className="expert-website">
-              {expert.website}
+              <a href={expert.website}>{expert.website}</a>
             </div>
             <div className="expert-description">
               {expert.description}
