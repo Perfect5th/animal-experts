@@ -9859,6 +9859,7 @@ class SelectBox extends React.Component {
 
 class SearchResults extends React.Component {
   loadSearchResults() {
+    // TODO: make this occur onChange of search box
     var r = new XMLHttpRequest();
     r.open("GET", "/api/experts", true);
     r.onreadystatechange = () => {
@@ -9879,7 +9880,20 @@ class SearchResults extends React.Component {
 
   render() {
     if (this.state.data.results) {
-      var expertNodes = this.state.data.results.map(function (expert) {
+      var expertNodes = this.state.data.results.map(expert => {
+
+        var fieldItems = expert.fields.map(field => {
+          return React.createElement(
+            'li',
+            { key: field.url },
+            React.createElement(
+              'a',
+              { href: '{field.url}' },
+              field.name
+            )
+          );
+        });
+
         return React.createElement(
           'li',
           { key: expert.url },
@@ -9909,7 +9923,11 @@ class SearchResults extends React.Component {
           React.createElement(
             'div',
             { className: 'expert-fields' },
-            expert.fields
+            React.createElement(
+              'ul',
+              null,
+              fieldItems
+            )
           ),
           React.createElement(
             'div',
