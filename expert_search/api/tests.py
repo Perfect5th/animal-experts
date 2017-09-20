@@ -14,7 +14,7 @@ class ExpertSearchTests(APITestCase):
         search_term = 'exotic'
         response = self.client.get('/api/experts/?q=' + search_term)
         self.assertEqual(response.status_code, 200)
-        content = json.loads(response.content)
+        content = json.loads(response.content.decode('utf-8'))
         self.assertEqual(content['count'], 2)
         results = content['results']
         self.assertIn(search_term , results[0]['subjects'].lower())
