@@ -9764,7 +9764,26 @@ var React = __webpack_require__(82);
 var ReactDOM = __webpack_require__(81);
 
 class Search extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.handleSearchBoxChange = this.handleSearchBoxChange.bind(this);
+    this.handleSelectBoxChange = this.handleSelectBoxChange.bind(this);
+    this.state = { searchValue: '' };
+  }
+
+  handleSearchBoxChange(value) {
+
+    this.setState({ searchValue: value });
+  }
+
+  handleSelectBoxChange(value) {
+    return;
+  }
+
   render() {
+    const searchValue = this.state.searchValue;
+
     return React.createElement(
       'div',
       null,
@@ -9780,7 +9799,9 @@ class Search extends React.Component {
             'Find me someone who is an expert in'
           )
         ),
-        React.createElement(SearchBox, null)
+        React.createElement(SearchBox, {
+          value: searchValue,
+          onSearchChange: this.handleSearchBoxChange })
       ),
       React.createElement(SearchResults, null),
       React.createElement(
@@ -9803,17 +9824,39 @@ class Search extends React.Component {
 };
 
 class SearchBox extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.state = { value: '' };
+
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleChange(event) {
+    this.props.onSearchChange(event.target.value);
+  }
+
+  handleSubmit(event) {
+    alert('A value was submitted: ' + this.props.value);
+    event.preventDefault();
+  }
+
   render() {
     return React.createElement(
-      'div',
-      { className: 'search-box' },
+      'form',
+      { onSubmit: this.handleSubmit },
       React.createElement(
         'div',
-        { className: 'search-wrap' },
+        { className: 'search-box' },
         React.createElement(
           'div',
-          { className: 'search-padding' },
-          React.createElement('input', { type: 'text', className: 'expert-search' })
+          { className: 'search-wrap' },
+          React.createElement(
+            'div',
+            { className: 'search-padding' },
+            React.createElement('input', { type: 'text', className: 'expert-search', value: this.props.value, onChange: this.handleChange })
+          )
         )
       )
     );

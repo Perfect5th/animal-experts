@@ -2,7 +2,26 @@ var React = require('react');
 var ReactDOM = require('react-dom');
 
 class Search extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.handleSearchBoxChange = this.handleSearchBoxChange.bind(this);
+    this.handleSelectBoxChange = this.handleSelectBoxChange.bind(this);
+    this.state = { searchValue: '' };
+  }
+
+  handleSearchBoxChange(value) {
+    
+    this.setState({ searchValue: value });
+  }
+
+  handleSelectBoxChange(value) {
+    return;
+  }
+
   render() {
+    const searchValue = this.state.searchValue;
+
     return (
       <div>
         <div className="prompt search-prompt">
@@ -11,7 +30,9 @@ class Search extends React.Component {
               Find me someone who is an expert in
             </p>
           </div>
-          <SearchBox />
+          <SearchBox
+            value={searchValue}
+            onSearchChange={this.handleSearchBoxChange} />
         </div>
         <SearchResults />
         <div className="prompt select-prompt">
@@ -29,15 +50,35 @@ class Search extends React.Component {
 };
 
 class SearchBox extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.state = { value: '' };
+
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleChange(event) {
+    this.props.onSearchChange(event.target.value);
+  }
+
+  handleSubmit(event) {
+    alert('A value was submitted: ' + this.props.value);
+    event.preventDefault();
+  }
+
   render() {
     return (
-      <div className="search-box">
-        <div className="search-wrap">
-          <div className="search-padding">
-            <input type="text" className="expert-search" />
+      <form onSubmit={this.handleSubmit}>
+        <div className="search-box">
+          <div className="search-wrap">
+            <div className="search-padding">
+              <input type="text" className="expert-search" value={this.props.value} onChange={this.handleChange} />
+            </div>
           </div>
         </div>
-      </div>
+      </form>
     );
   }
 }
