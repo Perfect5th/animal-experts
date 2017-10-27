@@ -25,7 +25,7 @@ class ExpertList(generics.ListCreateAPIView):
             queryset = queryset.annotate(
                 rank=SearchRank(vector, query)).order_by('-rank')
         else:
-            queryset = queryset.order_by('pk')
+            return []
         return queryset
 
 

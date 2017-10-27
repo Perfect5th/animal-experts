@@ -89,18 +89,14 @@
 }
 
 /* Search Results */
-.results-list ul {
-    list-style: none;
-}
-
-.results-list li {
+.result-item {
+    min-height: 10em;
+    padding: 0 2em;
     margin-bottom: 2em;
     display: flex;
     justify-content: space-between;
-}
-
-.results-list li:last-child {
-    margin: 0;
+    border-bottom: black solid 2px;
+    border-bottom-right-radius: 20px;
 }
 
 .expert-subjects,

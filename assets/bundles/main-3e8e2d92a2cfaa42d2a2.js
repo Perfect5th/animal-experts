@@ -9769,12 +9769,22 @@ class Search extends React.Component {
     super(props);
     this.handleSearchBoxChange = this.handleSearchBoxChange.bind(this);
     this.handleSelectBoxChange = this.handleSelectBoxChange.bind(this);
-    this.state = { searchValue: '' };
+    this.state = { data: null };
+  }
+
+  loadSearchResults(searchParam) {
+    // TODO: make this occur onChange of search box
+    var r = new XMLHttpRequest();
+    r.open("GET", "/api/experts?q=" + encodeURIComponent(searchParam), true);
+    r.onreadystatechange = () => {
+      if (r.readyState != 4 || r.status != 200) return;
+      this.setState({ data: JSON.parse(r.responseText) });
+    };
+    r.send();
   }
 
   handleSearchBoxChange(value) {
-
-    this.setState({ searchValue: value });
+    this.loadSearchResults(value);
   }
 
   handleSelectBoxChange(value) {
@@ -9803,7 +9813,7 @@ class Search extends React.Component {
           value: searchValue,
           onSearchChange: this.handleSearchBoxChange })
       ),
-      React.createElement(SearchResults, null),
+      React.createElement(SearchResults, { searchResults: this.state.data }),
       React.createElement(
         'div',
         { className: 'prompt select-prompt' },
@@ -9901,29 +9911,14 @@ class SelectBox extends React.Component {
 }
 
 class SearchResults extends React.Component {
-  loadSearchResults() {
-    // TODO: make this occur onChange of search box
-    var r = new XMLHttpRequest();
-    r.open("GET", "/api/experts", true);
-    r.onreadystatechange = () => {
-      if (r.readyState != 4 || r.status != 200) return;
-      this.setState({ data: JSON.parse(r.responseText) });
-    };
-    r.send();
-  }
 
   constructor(props) {
     super(props);
-    this.state = { data: {} };
-  }
-
-  componentWillMount() {
-    this.loadSearchResults();
   }
 
   render() {
-    if (this.state.data.results) {
-      var expertNodes = this.state.data.results.map(expert => {
+    if (this.props.searchResults) {
+      var expertNodes = this.props.searchResults.results.map(expert => {
 
         var fieldItems = expert.fields.map(field => {
           return React.createElement(
@@ -9938,8 +9933,8 @@ class SearchResults extends React.Component {
         });
 
         return React.createElement(
-          'li',
-          { key: expert.url },
+          'div',
+          { className: 'result-item', key: expert.url },
           React.createElement(
             'div',
             { className: 'expert-left-block' },
@@ -9996,11 +9991,7 @@ class SearchResults extends React.Component {
       React.createElement(
         'div',
         { className: 'results-list' },
-        React.createElement(
-          'ul',
-          null,
-          expertNodes
-        )
+        expertNodes
       )
     );
   }
